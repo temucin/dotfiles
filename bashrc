@@ -1,9 +1,17 @@
-# PERSONAL SETTINGS
+### PERSONAL SETTINGS ###
+#sets bash keyboard to vi
 set -o vi
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/powerlevel10k_rainbow.omp.json)" #oh-my-posh theme set
 
-PATH="/usr/local/go/bin:$PATH"
+#Oh-My-Pos theme
+#Instructions: https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
+eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/powerlevel10k_rainbow.omp.json)" 
 
+### PATH VARS ###
+#GOPATH="/usr/local/go/bin"
+GOPATH="/home/akhan/go"
+PATH="$GOPATH/bin:$PATH"
+
+### ALIAS ###
 #shortcuts
 alias dev="cd ~/dev/"
 
@@ -14,13 +22,14 @@ alias ....='cd ../../..'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../..'
 
+#dir list
 alias l='ls -al' #list everything with details
 alias lsl='ls -l' #list just visible with details
 alias la='ls -a' #list all file names
 alias ll='ls -FGlAhp' #list as many details as possible
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less' #recursively list all directories in LESS view
 
-#cause im incredibly lazy
+#cause lazy
 alias c='clear' 
 alias cl='clear'
 alias cls='clear'
@@ -36,6 +45,25 @@ alias vsrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias bsrc='. ~/.bashrc'
 alias zource='bsrc'
+
+### FUNCTIONS ###
+
+#Shows files with internet address of port arg. Can be used to find processes listening on specified port
+pl() {
+	lsof -i:$1
+}
+
+
+kpl() {
+	if [ $1 -eq 0 ]
+		then
+			kill -9 _PROC_FROM_PL
+		else
+			kill -9 $(pl $1 | awk 'FNR == 2 {print $2}')
+	fi
+}
+
+### Everything below this I think was picked up from oh-my-zsh. Not sure how relevant any of it is... ###
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -126,10 +154,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
