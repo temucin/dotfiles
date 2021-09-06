@@ -9,11 +9,13 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/powerlevel10k_rain
 ### PATH VARS ###
 #GOPATH="/usr/local/go/bin"
 GOPATH="/home/akhan/go"
-PATH="$GOPATH/bin:$PATH"
+PATH="$GOPATH/bin:$PATH" 
+#BROWSER="/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"[
 
 ### ALIAS ###
 #shortcuts
 alias dev="cd ~/dev/"
+alias exp="explorer.exe"
 
 #easy nav
 alias ..='cd ..'
