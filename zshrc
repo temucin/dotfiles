@@ -4,7 +4,7 @@ set -o vi
 
 #Oh-My-Posh theme
 #Instructions: https://ohmyposh.dev/docs/installation/customize#get-inspiration
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/powerlevel10k_rainbow.omp.json)" 
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/powerlevel10k_rainbow.omp.json)"
 
 ### PATH VARS ###
 #GOPATH="/usr/local/go/bin"
@@ -41,12 +41,17 @@ alias clea='clear'
 alias clera='clear'
 alias clrea='clear'
 alias claer='clear'
+
+#cause useful
 alias h='history'
 alias hg='history | grep $1'
 alias vsrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias bsrc='. ~/.bashrc'
 alias zource='bsrc'
+
+#might regret
+alias pip=pip3
 
 ### FUNCTIONS ###
 
